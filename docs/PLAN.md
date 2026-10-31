@@ -193,7 +193,7 @@ on_install(i):
 - Template postback theo network (URL + macro): install, event (đã map tên), revenue; hỗ trợ cả postback cho install organic/khác network nếu network yêu cầu (một số network cần "all installs" để tối ưu).
 - Hàng đợi retry (exponential, tối đa 24–72h), log từng postback (status code, latency) để đối soát.
 - Cấu hình per app × network: event nào gửi, có gửi revenue không, `af_siteid` mapping…
-- **Việc ngoài kỹ thuật:** liên hệ account manager của từng network để (1) xác nhận họ chấp nhận "custom/in-house MMP" (2) lấy spec postback & macro click URL (3) test end-to-end. Một số network lớn (AppLovin, Unity, Mintegral, ironSource, Moloco, Liftoff) có hỗ trợ in-house attribution nhưng điều kiện khác nhau → phải xác nhận từng nơi ở Phase 0.
+- **Việc ngoài kỹ thuật:** liên hệ account manager của từng network để (1) xác nhận họ chấp nhận "custom/in-house MMP" (2) lấy spec postback & macro click URL (3) test end-to-end (quy trình, email mẫu, bộ tài liệu: [PARTNER_APPROVALS.md](PARTNER_APPROVALS.md)). Một số network lớn (AppLovin, Unity, Mintegral, ironSource, Moloco, Liftoff) có hỗ trợ in-house attribution nhưng điều kiện khác nhau → phải xác nhận từng nơi ở Phase 0.
 
 ### 3.6 SKAdNetwork / AdAttributionKit (iOS)
 - Info.plist: `NSAdvertisingAttributionReportEndpoint = https://skan.<brand>.com` → Apple gửi **bản copy** postback winning về endpoint `/.well-known/skadnetwork/report-attribution/` (và AdAttributionKit tương đương).
@@ -328,7 +328,8 @@ Giả định team: 1 Tech Lead/Architect, 2 Backend (Go), 1 Data Engineer, 1 Mo
 ### Phase 0 — Khảo sát & quyết định (Tuần 1–3)
 - [ ] Thống kê hiện trạng: số app, MAU/DAU, events/ngày, installs/tháng, chi phí AF/Adjust hiện tại, spend theo network.
 - [ ] Liệt kê **mọi báo cáo/feature UA team đang dùng** trên AF/Adjust (phỏng vấn UA, data, monetization).
-- [ ] Liên hệ từng ad network: xác nhận hỗ trợ in-house MMP, lấy spec click URL macro + postback.
+- [ ] Liên hệ từng ad network: xác nhận hỗ trợ in-house MMP, lấy spec click URL macro + postback (quy trình chi tiết: [PARTNER_APPROVALS.md](PARTNER_APPROVALS.md)).
+- [ ] Nộp sớm các đơn xin quyền API mất nhiều thời gian: Google Ads developer token, Meta Business Verification + App Review, TikTok developer app.
 - [ ] Chốt phương án SAN (A/B/C – mục 4.4).
 - [ ] Ước tính tải: ví dụ 50M events/ngày ≈ 600 events/s trung bình, peak ×5–10.
 - [ ] Chọn cloud, chốt tech stack, ước lượng chi phí hạ tầng.
